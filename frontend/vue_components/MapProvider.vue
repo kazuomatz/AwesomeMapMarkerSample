@@ -16,6 +16,6 @@
                 google: this.google,
                 map: this.map
             }
-        },
+        }
     }
 </script>

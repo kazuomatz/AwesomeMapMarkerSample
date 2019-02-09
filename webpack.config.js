@@ -12,7 +12,6 @@ module.exports = [{
     devtool: 'source-map',
     entry: {
         application: __dirname + '/frontend/packs/application.js',
-        editor: __dirname + '/frontend/packs/editor.js'
     },
     context: packs,
     output: {
@@ -68,19 +67,6 @@ module.exports = [{
             writeToFileEmit: true,
         }),
         new VueLoaderPlugin(),
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            JQuery:'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery',
-            'window.$': 'jquery',
-            'window.jQuery': 'jquery/dist/jquery',
-            Popper: 'popper.js',
-            Validator: 'parsleyjs',
-            parsley:  'parsleyjs',
-            Timepicker: 'bootstrap-timepicker',
-            Datepicker: 'bootstrap-datepicker'
-        }),
         new MiniCssExtractPlugin({filename: devMode ? '[name].css' : '[name]-[hash].css'})
     ],
 

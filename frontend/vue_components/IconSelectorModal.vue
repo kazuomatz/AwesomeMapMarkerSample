@@ -23,8 +23,11 @@
 <script>
     import { Sketch } from 'vue-color'
     export default {
+        mounted: function() {
+          this.color = this.defaultColor;
+        },
         name: "IconSelectorModal",
-        props: ['icons'],
+        props: ['icons','defaultColor'],
         components: {
             'sketch-picker': Sketch
         },
@@ -100,9 +103,7 @@
                     color: #fff;
                 }
             }
-
-        }
+       }
     }
 }
-
 </style>

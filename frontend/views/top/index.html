@@ -1,18 +1,10 @@
-<div id="map">
-    <div class="columns">
-        <div class="column">
-            <div class="container map-container">
-                <div class="box">
-                    <div>
-                        <map-vue :markers='markers'></map-vue>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div id="map" class="map-container container">
+    <div style="margin-bottom: 20px">
+        <b-message type="is-success">
+            Plot the marker by clicking anywhere on the map.
+        </b-message>
     </div>
-    <div class="columns">
-        <div class="column">
-            <button class="button is-primary" @click="showDialog"><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;Add</button>
-        </div>
+    <div>
+        <map-vue :markers='markers'></map-vue>
     </div>
 </div>

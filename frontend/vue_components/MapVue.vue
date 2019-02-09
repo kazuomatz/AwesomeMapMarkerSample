@@ -2,7 +2,7 @@
     <div>
         <map-loader
                 :map-config="mapConfig"
-                apiKey="AIzaSyBY4df3glSo2RgHCmNc6GQRRh20RdbmGuk">
+                apiKey="<YOUR API KEY>">
             <template v-for="marker in markers">
                 <child-marker :position="marker.position" :color="marker.color"  :icon="marker.icon" />
             </template>
