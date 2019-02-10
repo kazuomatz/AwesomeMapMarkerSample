@@ -4,7 +4,11 @@
                 :map-config="mapConfig"
                 apiKey="--YOUR MAP KEY--">
             <template v-for="marker in markers">
-                <child-marker :position="marker.position" :color="marker.color" :icon="marker.icon" :iconType="marker.iconType"/>
+                <child-marker
+                        :position="marker.position"
+                        :color="marker.color"
+                        :icon="marker.icon"
+                        :iconType="marker.iconType"/>
             </template>
         </map-loader>
     </div>
