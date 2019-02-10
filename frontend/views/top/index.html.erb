@@ -1,0 +1,14 @@
+<div id="map" class="map-container container">
+  <div style="margin-bottom: 20px">
+    <b-message type="is-success">
+      Plot the marker by clicking anywhere on the map.
+    </b-message>
+  </div>
+  <div>
+    <map-vue :markers='markers'></map-vue>
+  </div>
+</div>
+<script>
+    var apiKey = "<%=ENV['MAP_API_KEY']%>";
+    var defultPostion = {lat: 34.972187, lng: 138.388901};
+</script>
