@@ -5,7 +5,6 @@ const packs = path.join(__dirname, 'frontend')
 const ManifestPlugin = require("webpack-manifest-plugin")
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const devMode = process.env.NODE_ENV !== 'production'
-//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = [{
     mode: devMode,
@@ -58,9 +57,6 @@ module.exports = [{
     },
 
     plugins: [
-
-       //new BundleAnalyzerPlugin(),
-
         new ManifestPlugin({
             fileName: 'manifest.json',
             publicPath: '/',
@@ -72,7 +68,7 @@ module.exports = [{
 
     devServer: {
         contentBase: '/',
-        port: 3035,
+        port: 8000,
         historyApiFallback: true,
         headers: {
             'Access-Control-Allow-Origin': '*'

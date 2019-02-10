@@ -1,38 +1,37 @@
 require 'open-uri'
-# webpackによるビルドファイル読み込み用ヘルパー
+
 module WebPackerBundleHelper
   class BundleNotFound < StandardError; end
 
   def javascript_bundle_tag(entry, **options)
     path = asset_bundle_path("#{entry}.js")
-
     options = {
         src: path,
         defer: true
     }.merge(options)
-
-    # async と defer を両方指定した場合、ふつうは async が優先されるが、
-    # defer しか対応してない古いブラウザの挙動を考えるのが面倒なので、両方指定は防いでおく
     options.delete(:defer) if options[:async]
-
     javascript_include_tag '', **options
   end
 
   def stylesheet_bundle_tag(entry, **options)
     path = asset_bundle_path("#{entry}.css")
-
     options = {
         href: path
     }.merge(options)
-
     stylesheet_link_tag '', **options
   end
 
+  def asset_bundle_path(entry, **options)
+    valid_entry?(entry)
+    asset_path("#{asset_server}" + manifest.fetch(entry), **options)
+  end
+
+
   private
 
-  # アセットが置かれているサーバーを返す
+  # Asset Sever URL
   def asset_server
-    port = Rails.env === 'production' ? '3000' : '3035'
+    port = Rails.env === 'production' ? '3000' : '8000'
     "http://#{request.host}:#{port}/"
   end
 
@@ -41,7 +40,6 @@ module WebPackerBundleHelper
   end
 
   def dev_manifest
-    # webpack-dev-serverから直接取得する
     OpenURI.open_uri("#{asset_server}/manifest.json").read
   end
 
@@ -60,8 +58,4 @@ module WebPackerBundleHelper
     raise BundleNotFound, "Could not find bundle with name #{entry}"
   end
 
-  def asset_bundle_path(entry, **options)
-    valid_entry?(entry)
-    asset_path("#{asset_server}" + manifest.fetch(entry), **options)
-  end
 end
