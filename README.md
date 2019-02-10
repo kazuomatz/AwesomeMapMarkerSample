@@ -42,7 +42,7 @@ If you have not installed foreman, install it as follows.
 $ gem install foreman
 ```
 
-If you want to change the latitude and longitude when displaying the map, change the default position in frontend/views/top/ index.html.erb
+If you want to change the latitude and longitude when displaying the map, change the default position in frontend/views/top/index.html.erb
 
 ```html
 <script>
