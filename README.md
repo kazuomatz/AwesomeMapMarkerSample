@@ -7,16 +7,18 @@ AwesomeMapMarker is a library that generates markers from Fontawesome 5 for plot
 
 Things you may want to cover:
 
-* Ruby version
+## Ruby version
+
 2.51
 
-* System dependencies
-- Rails 5.2
-- Vue.js
-- webpack 4 (not use webpacker)
-- Buefy
+## System dependencies
 
-* How to run the test suite
+- Rails 5.2.2
+- Vue.js 2.5.2
+- webpack 4.29.0 (not use webpacker)
+- [Buefy](https://buefy.github.io/)
+
+## How to run
 
 ```bash
 $ bundle install
