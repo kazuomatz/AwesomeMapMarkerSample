@@ -5,11 +5,9 @@
 This is a sample application that uses [AwesomeMapMarker](https://github.com/kazuomatz/AwesomeMapMarker). 
 AwesomeMapMarker is a library that generates markers from Fontawesome 5 for plotting on maps such as Google Map, Open Street Map and iOS App etc.
 
-Things you may want to cover:
-
 ## Ruby version
 
-2.51
+- 2.51
 
 ## System dependencies
 
