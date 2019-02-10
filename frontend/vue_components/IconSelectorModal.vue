@@ -6,16 +6,30 @@
         <section class="modal-card-body">
             <div class="columns icons">
                 <div class="column is-8">
-                    <span v-for="icon in icons" class="icon" @click="setIcon(icon,$event)"><i :class="'fas fa-' + icon.id"></i></span>
+                    <b-tabs size="is-medium" class="block">
+                        <b-tab-item label="Brand">
+                            <span v-for="icon in icons.brand" class="icon" @click="setIcon('fab',icon,$event)"><i :class="'fab fa-' + icon.id"></i></span>
+                        </b-tab-item>
+                        <b-tab-item label="Solid">
+                            <span v-for="icon in icons.solid" class="icon" @click="setIcon('fas',icon,$event)"><i :class="'fas fa-' + icon.id"></i></span>
+                        </b-tab-item>
+                    </b-tabs>
                 </div>
                 <div class="column is-4">
-                    <sketch-picker v-model="color" @input="changeColor"></sketch-picker>
+                    <div class="tile is-vertical">
+                        <div class="tile">
+                            <sketch-picker v-model="color" @input="changeColor"></sketch-picker>
+                        </div>
+                        <div class="tile preview-icon" v-show="this.activeIcon">
+                            <img :src="iconPath" class="image is-64x64"/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
         <footer class="modal-card-foot">
-            <button class="button" type="button" @click="$parent.close()">Close</button>
-            <button :disabled="!this.activeIcon" class="button is-primary" @click="$emit('plotIcon',activeIcon,color);$parent.close()"><i class="fa fa-marker-alt"></i>  Plot</button>
+            <button class="button" type="button" @click="$parent.close()">cancel</button>
+            <button :disabled="!this.activeIcon" class="is-primary button" @click="$emit('plotIcon',activeIconType,activeIcon,color);$parent.close()"><i class="fas fa-map-marker-alt"></i>&nbsp;plot</button>
         </footer>
     </div>
 </template>
@@ -26,25 +40,36 @@
         mounted: function() {
           this.color = this.defaultColor;
         },
-        name: "IconSelectorModal",
+        name: 'IconSelectorModal',
         props: ['icons','defaultColor'],
         components: {
             'sketch-picker': Sketch
         },
+        computed: {
+            iconPath: function() {
+                if (this.activeIcon) {
+                    return '/markers/' + this.activeIconType + '/' + this.activeIcon.id + '/' + this.color.replace('#', '') + '.png';
+                }
+                else {
+                    return '';
+                }
+            }
+        },
         methods: {
             changeColor: function(e) {
-                let activeElement = document.querySelector(".active");
+                let activeElement = document.querySelector('.active');
                 if (activeElement) {
                     activeElement.style.backgroundColor = e.hex;
                 }
                 this.color = e.hex;
             },
-            setIcon: function(icon,event) {
-                let activeElement = document.querySelector(".active");
+            setIcon: function(iconType,icon,event) {
+                let activeElement = document.querySelector('.active');
                 this.activeIcon = icon
+                this.activeIconType = iconType
                 if(activeElement) {
                     activeElement.style.backgroundColor = null;
-                    activeElement.classList.remove("active");
+                    activeElement.classList.remove('active');
                 }
                 event.currentTarget.classList.add('active');
                 event.currentTarget.style.backgroundColor = this.color;
@@ -53,7 +78,8 @@
         data () {
             return {
                 color: '#194d33',
-                activeIcon: null
+                activeIcon: null,
+                activeIconType: null
             }
         }
     }
@@ -66,10 +92,14 @@
         .vc-sketch {
             left: 0;
             right: 0;
-            position: absolute;
-            margin: auto;
+            margin: 40px auto;
         }
-        height: 400px;
+        .tile {
+            &.preview-icon {
+                margin: auto;
+            }
+        }
+        height: 600px;
         overflow: scroll;
         span.icon {
             display: inline-block;

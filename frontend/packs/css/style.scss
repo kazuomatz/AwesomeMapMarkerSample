@@ -1,6 +1,7 @@
 @charset "utf-8";
 // Import a Google Font
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+@import "bulma/sass/utilities/_all";
 
 // Set your brand colors
 $primary: #2CB696;
@@ -22,14 +23,11 @@ $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
 
-// Import only what you need from Bulma
-@import "bulma/sass/utilities/_all.sass";
-@import "bulma/sass/base/_all.sass";
-@import "bulma/sass/elements/button.sass";
-@import "bulma/sass/elements/container.sass";
-@import "bulma/sass/elements/form.sass";
-@import "bulma/sass/elements/title.sass";
-@import "bulma/sass/components/_all.sass";
-@import "bulma/sass/layout/_all.sass";
-@import "bulma/sass/grid/_all.sass";
+// Links
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+// Import Bulma and Buefy styles
+@import "bulma";
+@import "buefy/src/scss/buefy";
 @import "./base";

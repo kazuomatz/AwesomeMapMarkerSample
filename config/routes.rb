@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'markers/:id/:color.:format', to:'markers#show'
+  get 'markers/:icon_type/:id/:color.:format', to:'markers#show'
   get 'markers', to: 'markers#index'
   get 'top/index'
   root 'top#index'

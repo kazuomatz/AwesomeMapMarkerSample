@@ -1,2 +1,2 @@
-server: bin/rails server
+server: bundle exec puma -e development
 assets: yarn start

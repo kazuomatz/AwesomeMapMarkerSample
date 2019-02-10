@@ -2,11 +2,12 @@
 <template></template>
 <script>
     export default {
-        inject: ["google", "map"],
+        inject: ['google', 'map'],
         props: {
             position: Object,
             icon: Object,
-            color: ""
+            color: '',
+            iconType: ''
         },
         data(){
             return { marker: null}
@@ -18,10 +19,10 @@
                 position: new this.google.maps.LatLng(this.position.lat, this.position.lng),
                 map: this.map,
                 icon: {
-                    url: '/markers/' + this.icon.id + "/" + this.color.replace("#","") + ".png",
+                    url: '/markers/' + this.iconType + '/' + this.icon.id + '/' + this.color.replace('#','') + '.png',
                     scaledSize : new this.google.maps.Size(48, 48)
                 },
-                title: "Child marker!"
+                title: 'Awesome Marker' + this.icon.id
             })
         }
     }

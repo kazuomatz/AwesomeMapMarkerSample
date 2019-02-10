@@ -6,9 +6,10 @@ import Buefy from 'buefy'
 Vue.use(Buefy)
 
 import './css/style'
-import MapVue from "../vue_components/MapVue"
+import MapVue from '../vue_components/MapVue'
 import '@fortawesome/fontawesome-free/css/all.css'
 import IconSelectorModal from '../vue_components/IconSelectorModal'
+
 document.addEventListener('DOMContentLoaded', () => {
     let request = new XMLHttpRequest();
     request.onreadystatechange = function(e) {
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     data() {
                         return {
                             icon: {},
-                            color: "#194d33",
+                            color: '#f7534b',
                             markers: [],
                             plotPosition: Object
                         }
@@ -37,9 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
                                 props : {icons: request.response.icons, defaultColor: this.color},
                                 hasModalCard: true,
                                 events: {
-                                    plotIcon: function(icon, color) {
+                                    plotIcon: function(iconType, icon, color) {
                                         app.color = color;
-                                        app.markers.push({position: app.plotPosition,color: color, icon: icon  })
+                                        app.markers.push({position: app.plotPosition, color: color, icon: icon, iconType: iconType});
+
+                                        app.$toast.open({
+                                            message: 'Plotted marker',
+                                            position: 'is-bottom'
+                                        })
+
                                     },
                                 }
                             })
