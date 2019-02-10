@@ -1,7 +1,7 @@
 <template>
     <div class="modal-card" style="width: auto">
         <header class="modal-card-head">
-            <p class="modal-card-title">Icon Select</p>
+            <p class="modal-card-title">Select Icon</p>
         </header>
         <section class="modal-card-body">
             <div class="columns icons">
