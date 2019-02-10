@@ -76,6 +76,14 @@ $ foreman start
 ```
 Access http://localhost:5000 in the browser.
 
+If you have not installed foreman, install it as follows.
+
+```bash
+$ gem install foreman
+```
+
+
+
 
 ## License
 
