@@ -57,14 +57,14 @@
         },
         methods: {
             changeColor: function(e) {
-                let activeElement = document.querySelector('.active');
+                let activeElement = this.$el.querySelector('.active');
                 if (activeElement) {
                     activeElement.style.backgroundColor = e.hex;
                 }
                 this.color = e.hex;
             },
             setIcon: function(iconType,icon,event) {
-                let activeElement = document.querySelector('.active');
+                let activeElement = this.$el.querySelector('.active');
                 this.activeIcon = icon
                 this.activeIconType = iconType
                 if(activeElement) {
