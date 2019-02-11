@@ -21,53 +21,15 @@ AwesomeMapMarker is a library that generates markers from Fontawesome 5 for plot
 ```bash
 $ bundle install
 $ npm install
-$ vim frontend/vue_components/MapVue.vue 
+$ touch .env
+$ vim .env
 ```
 
-```vue::frontend/vue_components/MapVue.vue 
-<template>
-    <div>
-        <map-loader
-                :map-config="mapConfig"
-                apiKey="--YOUR MAP KEY--">
-            <template v-for="marker in markers">
-                <child-marker 
-                  :position="marker.position" 
-                  :color="marker.color" 
-                  :icon="marker.icon" 
-                  :iconType="marker.iconType"/>
-            </template>
-        </map-loader>
-    </div>
-</template>
-
-<script>
-    import MapLoader from "./MapLoader.vue"
-    import ChildMarker from './ChildMarker'
-    export default {
-        props: {
-            markers: Array
-        },
-        data(){
-            return {
-                mapConfig: {
-                    zoom: 12,
-                    center: {lat: 34.972187, lng: 138.388901}  //Default Position
-                }
-            }
-        },
-        components: {
-            MapLoader,
-            ChildMarker
-        },
-        methods: {
-        }
-    }
-</script>
-
+```text
+MAP_API_KEY='--YOUR API KEY---'
 ```
 
-Replace "--YOUR MAP KEY--" to your google map api key, and "Default Position" is the latitude and longitude when displaying the google map. Please change it to your liking value.
+Set your Google Map API key in the .env file.
 
 ```bash
 $ foreman start
@@ -80,10 +42,17 @@ If you have not installed foreman, install it as follows.
 $ gem install foreman
 ```
 
+If you want to change the latitude and longitude when displaying the map, change the default position in frontend/views/top/index.html.erb
 
+```html
+<script>
+    var apiKey = "<%=ENV['MAP_API_KEY']%>";
+    var defultPostion = {lat: 34.972187, lng: 138.388901};
+</script>
+```
 
 
 ## License
 
 - This applocation is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-- All font files licensed under [SIL OFL 1.1](http://scripts.sil.org/OFL)
+- All font files licensed under [SIL OFL 1.1](http://scripts.sil.org/OFL).
