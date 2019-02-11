@@ -39,12 +39,12 @@
         },
         methods: {
             initializeMap (){
-                let t = this;
+                const self = this;
                 const mapContainer = this.$el.querySelector('#map')
                 const { Map } = this.google.maps
                 this.map = new Map(mapContainer, this.mapConfig)
                 this.map.addListener('click', function(event) {
-                    t.$parent.$parent.plotMarker({lat: event.latLng.lat(), lng: event.latLng.lng()})
+                    self.$root.plotMarker({lat: event.latLng.lat(), lng: event.latLng.lng()})
                 })
             }
         }
